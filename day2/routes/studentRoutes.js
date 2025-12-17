@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const students = require("../data/students");
+const students = require("../data/students");//accessing studets array
 const {
     validateSingleStudent,validateMultipleStudents
-} = require("../middleware/validateStudent");
+} = require("../middleware/validateStudent");//parent directory relative to current file
 router.post("/",(req,res, next)=>{
     if(Array.isArray(req.body)){
         return validateMultipleStudents(req,res, ()=>{
@@ -27,7 +27,7 @@ router.post("/",(req,res, next)=>{
 router.get("/",(req,res)=>{
     res.json(students);
 });
-
+//using router built-in func to get
 router.get("/:id",(req,res)=>{
     const id = parseInt(req.params.id);
     const student = students.find(s => s.id === id);
@@ -40,13 +40,14 @@ router.get("/:id",(req,res)=>{
 router.put("/update-course/all",(req,res)=>{
     const {course} = req.body;
     if(!course){
-        return res.status(400).json({
+        return res.status(400).json({//bad request
             message:"course is required"
         });
     }
     students.forEach(student =>{
         student.course = course;
     });
+
     res.json({
         message:"All students course updated",
         updatedCourse : course,
