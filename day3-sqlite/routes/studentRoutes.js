@@ -22,7 +22,7 @@ module.exports = (db) => {
     db.all(
       "SELECT * FROM students ORDER BY age DESC",
       [],
-      (err, rows) => {
+      (err, rows) => { 
         res.json(rows);
       }
     );
