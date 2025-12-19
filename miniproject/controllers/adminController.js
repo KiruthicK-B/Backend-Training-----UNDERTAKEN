@@ -119,7 +119,7 @@ exports.viewUserOrders = async (req, res) => {
     }
 };
 
-// Update Delivery Status
+
 exports.updateDeliveryStatus = async (req, res) => {
     try {
         const { orderId } = req.params;
